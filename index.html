@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>N-GINE — Blueprint Canvas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<button id="mobileMenuBtn" onclick="toggleControlsMobile()">☰ Parts</button>
+<div id="controlsOverlay" onclick="toggleControlsMobile()"></div>
+<div id="controls">
+  <h1 id="panelTitle">N-GINE</h1>
+  <div class="part-sub" id="panelSub">No part selected</div>
+
+  <div class="toggle-group">
+    <button id="btn-metric" class="active" onclick="setUnit('mm')">Metric (mm)</button>
+    <button id="btn-customary" onclick="setUnit('in')">Customary (in)</button>
+  </div>
+
+  <div class="precision-label">Display Precision</div>
+  <div class="precision-row">
+    <button class="active" data-p="0" onclick="setPrecision(0)">Whole<br>mm / in</button>
+    <button data-p="1" onclick="setPrecision(1)">Tenths<br>0.1</button>
+    <button data-p="2" onclick="setPrecision(2)">Hundredths<br>0.01</button>
+    <button data-p="3" onclick="setPrecision(3)">Thousandths<br>0.001</button>
+  </div>
+
+  <div id="variantRow"></div>
+  <div id="fields"></div>
+  <div id="emptyState"></div>
+
+  <button class="extrude-btn" id="extrudeBtn" onclick="toggleExtrude()" disabled>Extrude →</button>
+
+  <div id="extrudeFields"></div>
+
+  <div id="warning"></div>
+</div>
+
+<div id="canvas-area">
+  <svg id="sheet" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+
+<img id="logoFloat" alt="N-GINE" src="logo.png">
+<div id="gridMenuWrap">
+  <button id="gridMenuBtn" onclick="toggleGridMenu()">Grid: 10mm ▾</button>
+  <div id="gridMenuOptions"></div>
+</div>
+<div id="toolbar">
+  <button id="recenterBtn" onclick="centerOnPart()">Center on Part</button>
+  <button id="measureBtn" onclick="toggleMeasure()">Measure</button>
+  <button id="angleBtn" onclick="toggleAngle()">Angle</button>
+  <button id="clearBtn" onclick="clearSketch()">Clear Sketch</button>
+</div>
+
+<div id="partsDrawerWrap">
+  <button id="partsDrawerTab" onclick="toggleDrawer()"><span class="arrow">◀</span></button>
+  <div id="partsDrawerPanel"><div id="partsDrawerInner"></div></div>
+</div>
+<div id="spawnGhost"></div>
+
+<div id="confirmOverlay">
+  <div id="confirmBox">
+    <div id="confirmMessage"></div>
+    <div id="confirmButtons">
+      <button id="confirmCancelBtn">Cancel</button>
+      <button id="confirmOkBtn">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script src="shapes.js"></script>
+<script src="engine.js"></script>
+</body>
+</html>
